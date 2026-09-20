@@ -1,0 +1,29 @@
+{
+  "features": [
+    "CreditScore",
+    "Geography",
+    "Gender",
+    "Age",
+    "Tenure",
+    "Balance",
+    "NumOfProducts",
+    "HasCrCard",
+    "IsActiveMember",
+    "EstimatedSalary"
+  ],
+  "model_version": "bank-random-forest-1.0",
+  "threshold": 0.5,
+  "sklearn_version": "1.6.1",
+  "metrics": {
+    "roc_auc": 0.8564342462647546,
+    "accuracy": 0.8655
+  },
+  "dataset": "Churn Modelling (bank customers)",
+  "dataset_page": "https://www.kaggle.com/datasets/shrutimechlearn/churn-modelling",
+  "data_source": "https://raw.githubusercontent.com/selva86/datasets/master/Churn_Modelling.csv",
+  "data_sha256": "3996cd1fa372e0db0cd9c0ebac35bbd4e8e3c65fb942bb010c826e7b1eeef0a0",
+  "target": "Exited",
+  "train_rows": 8000,
+  "test_rows": 2000,
+  "random_state": 42
+}
