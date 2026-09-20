@@ -1,0 +1,30 @@
+Ошибки при работе над проектом
+
+
+1. uv sync не находил pydentic-settings. Исправила название на pydantic-settings.
+
+2. В pyproject.toml были опечатки: tool.uv.build.backend и model-name. Заменила на tool.uv.build-backend и module-name. Добавили __init__.py в churn.
+
+3. В config.py написала Settings{} и INFO0. Исправила на Settings() и INFO.
+
+4. При запуске uvicorn указала --pport и churn.service.up. Правильная команда: uv run uvicorn churn.service.app:app --port 8000 --reload.
+
+5. В app.py написала fastAPI вместо FastAPI. Исправила импорт и убрала повторное создание приложения.
+
+6. Модель не находилась: папка называлась artifact, а в настройках было artifacts. Исправила путь.
+
+7. Ввела uv run pytests. Такой команды нет, нужно uv run pytest.
+
+8. Семь тестов падали, потому что good_row возвращала None. После return был перенос строки. Исправила на return { — все 10 тестов прошли.
+
+9. Docker не подключался к dockerDesktopLinuxEngine. После запуска Docker Desktop в docker info появился раздел Server.
+
+10. Неправильно вводила команду сборки: сначала без двоеточия, потом без точки в конце. Правильно: docker build -t churn-service:1.0 .
+
+11. В команде psql были неправильные дефисы и не хватало пробелов. Ещё переносила запрос на новую строку после -c, поэтому он оставался без аргумента. Правильно: docker compose exec db psql -U postgres -d churn -c "SELECT request_id, score, latency_ms FROM predictions;"
+
+12. После обновления появился третий Pod в Pending. Через kubectl describe pod выяснила причину: Insufficient memory. В requests и limits стояло 1000000000Mi. Исправили на 256Mi и 512Mi, затем нужно повторно применить k8s/.
+
+13. Команда k9s не распознавалась, хотя программа была установлена. Добавили папку программы в пользовательский Path. 
+
+14. Запрос curl не выполнялся из-за неправильных дефисов, отсутствия пробелов и кавычек вокруг @good.json. Для PowerShell использую curl.exe. Команда: curl.exe -X POST http://localhost:8080/v1/predict -H "Content-Type: application/json" --data-binary "@good.json"
